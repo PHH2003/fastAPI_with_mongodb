@@ -1,0 +1,146 @@
+[
+    {
+        "label": "MongoClient",
+        "importPath": "pymongo",
+        "description": "pymongo",
+        "isExtraImport": true,
+        "detail": "pymongo",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "APIRouter",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "Todo",
+        "importPath": "models.todos",
+        "description": "models.todos",
+        "isExtraImport": true,
+        "detail": "models.todos",
+        "documentation": {}
+    },
+    {
+        "label": "collection_name",
+        "importPath": "config.database",
+        "description": "config.database",
+        "isExtraImport": true,
+        "detail": "config.database",
+        "documentation": {}
+    },
+    {
+        "label": "list_serial",
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "isExtraImport": true,
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "ObjectId",
+        "importPath": "bson",
+        "description": "bson",
+        "isExtraImport": true,
+        "detail": "bson",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "importPath": "routes.route",
+        "description": "routes.route",
+        "isExtraImport": true,
+        "detail": "routes.route",
+        "documentation": {}
+    },
+    {
+        "label": "client",
+        "kind": 5,
+        "importPath": "config.database",
+        "description": "config.database",
+        "peekOfCode": "client = MongoClient(\"mongodb://localhost:27017\")\ndb = client.todo_db\ncollection_name = db[\"todo_collection\"]",
+        "detail": "config.database",
+        "documentation": {}
+    },
+    {
+        "label": "db",
+        "kind": 5,
+        "importPath": "config.database",
+        "description": "config.database",
+        "peekOfCode": "db = client.todo_db\ncollection_name = db[\"todo_collection\"]",
+        "detail": "config.database",
+        "documentation": {}
+    },
+    {
+        "label": "collection_name",
+        "kind": 5,
+        "importPath": "config.database",
+        "description": "config.database",
+        "peekOfCode": "collection_name = db[\"todo_collection\"]",
+        "detail": "config.database",
+        "documentation": {}
+    },
+    {
+        "label": "Todo",
+        "kind": 6,
+        "importPath": "models.todos",
+        "description": "models.todos",
+        "peekOfCode": "class Todo(BaseModel):\n    name: str\n    description: str\n    complete: bool",
+        "detail": "models.todos",
+        "documentation": {}
+    },
+    {
+        "label": "router",
+        "kind": 5,
+        "importPath": "routes.route",
+        "description": "routes.route",
+        "peekOfCode": "router = APIRouter()\n#GET Request Method\n@router.get(\"/\")\nasync def get_todos():\n    todos = list_serial(collection_name.find())\n    return todos\n# POST Request Method\n@router.post(\"/\")\nasync def post_todos(todo: Todo):\n    collection_name.insert_one(dict(todo))",
+        "detail": "routes.route",
+        "documentation": {}
+    },
+    {
+        "label": "individual_serial",
+        "kind": 2,
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "peekOfCode": "def individual_serial(todo) -> dict:\n    return {\n        \"id\": str(todo[\"_id\"]),\n        \"name\": todo[\"name\"],\n        \"description\": todo[\"description\"],\n        \"complete\": todo[\"complete\"]\n    }\ndef list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]",
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "list_serial",
+        "kind": 2,
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "peekOfCode": "def list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]",
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\napp.include_router(router)",
+        "detail": "main",
+        "documentation": {}
+    }
+]
