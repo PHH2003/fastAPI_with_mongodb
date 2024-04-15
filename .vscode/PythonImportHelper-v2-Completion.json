@@ -76,7 +76,7 @@
         "kind": 5,
         "importPath": "config.database",
         "description": "config.database",
-        "peekOfCode": "client = MongoClient(\"mongodb://localhost:27017\")\ndb = client.todo_db\ncollection_name = db[\"todo_collection\"]",
+        "peekOfCode": "client = MongoClient(\"mongodb+srv://hiepph:hiep2003@cluster0.owfcn5g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\")\ndb = client.todo_db\ncollection_name = db[\"todo_collection\"]",
         "detail": "config.database",
         "documentation": {}
     },
