@@ -32,6 +32,14 @@
         "documentation": {}
     },
     {
+        "label": "Product",
+        "importPath": "models.todos",
+        "description": "models.todos",
+        "isExtraImport": true,
+        "detail": "models.todos",
+        "documentation": {}
+    },
+    {
         "label": "Todo",
         "importPath": "models.todos",
         "description": "models.todos",
@@ -48,7 +56,31 @@
         "documentation": {}
     },
     {
+        "label": "collection_product",
+        "importPath": "config.database",
+        "description": "config.database",
+        "isExtraImport": true,
+        "detail": "config.database",
+        "documentation": {}
+    },
+    {
+        "label": "list_product",
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "isExtraImport": true,
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
         "label": "list_serial",
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "isExtraImport": true,
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "product_serial",
         "importPath": "schema.schemas",
         "description": "schema.schemas",
         "isExtraImport": true,
@@ -76,7 +108,7 @@
         "kind": 5,
         "importPath": "config.database",
         "description": "config.database",
-        "peekOfCode": "client = MongoClient(\"mongodb+srv://hiepph:hiep2003@cluster0.owfcn5g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\")\ndb = client.todo_db\ncollection_name = db[\"todo_collection\"]",
+        "peekOfCode": "client = MongoClient(\"mongodb+srv://hiepph:hiep2003@cluster0.owfcn5g.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0\")\ndb = client.todo_db\ncollection_name = db[\"todo_collection\"]\ncollection_product  = db[\"product\"]",
         "detail": "config.database",
         "documentation": {}
     },
@@ -85,7 +117,7 @@
         "kind": 5,
         "importPath": "config.database",
         "description": "config.database",
-        "peekOfCode": "db = client.todo_db\ncollection_name = db[\"todo_collection\"]",
+        "peekOfCode": "db = client.todo_db\ncollection_name = db[\"todo_collection\"]\ncollection_product  = db[\"product\"]",
         "detail": "config.database",
         "documentation": {}
     },
@@ -94,7 +126,7 @@
         "kind": 5,
         "importPath": "config.database",
         "description": "config.database",
-        "peekOfCode": "collection_name = db[\"todo_collection\"]",
+        "peekOfCode": "collection_name = db[\"todo_collection\"]\ncollection_product  = db[\"product\"]",
         "detail": "config.database",
         "documentation": {}
     },
@@ -103,7 +135,25 @@
         "kind": 6,
         "importPath": "models.todos",
         "description": "models.todos",
-        "peekOfCode": "class Todo(BaseModel):\n    name: str\n    description: str\n    complete: bool",
+        "peekOfCode": "class Todo(BaseModel):\n    name: str\n    description: str\n    complete: bool\nclass Product(BaseModel):\n    name: str\n    price: float\n    quantity: int\n    description: str\nclass Category(BaseModel):",
+        "detail": "models.todos",
+        "documentation": {}
+    },
+    {
+        "label": "Product",
+        "kind": 6,
+        "importPath": "models.todos",
+        "description": "models.todos",
+        "peekOfCode": "class Product(BaseModel):\n    name: str\n    price: float\n    quantity: int\n    description: str\nclass Category(BaseModel):\n    pass",
+        "detail": "models.todos",
+        "documentation": {}
+    },
+    {
+        "label": "Category",
+        "kind": 6,
+        "importPath": "models.todos",
+        "description": "models.todos",
+        "peekOfCode": "class Category(BaseModel):\n    pass",
         "detail": "models.todos",
         "documentation": {}
     },
@@ -121,7 +171,7 @@
         "kind": 2,
         "importPath": "schema.schemas",
         "description": "schema.schemas",
-        "peekOfCode": "def individual_serial(todo) -> dict:\n    return {\n        \"id\": str(todo[\"_id\"]),\n        \"name\": todo[\"name\"],\n        \"description\": todo[\"description\"],\n        \"complete\": todo[\"complete\"]\n    }\ndef list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]",
+        "peekOfCode": "def individual_serial(todo) -> dict:\n    return {\n        \"id\": str(todo[\"_id\"]),\n        \"name\": todo[\"name\"],\n        \"description\": todo[\"description\"],\n        \"complete\": todo[\"complete\"]\n    }\ndef list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]\ndef product_serial(product) -> dict:",
         "detail": "schema.schemas",
         "documentation": {}
     },
@@ -130,7 +180,25 @@
         "kind": 2,
         "importPath": "schema.schemas",
         "description": "schema.schemas",
-        "peekOfCode": "def list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]",
+        "peekOfCode": "def list_serial(todos) -> list:\n    return [individual_serial(todo) for todo in todos]\ndef product_serial(product) -> dict:\n    return {\n        \"id\" : str(product[\"_id\"]),\n        \"name\": product[\"name\"],\n        \"price\": product[\"price\"],\n        \"quantity\": product[\"quantity\"],\n        \"description\": product[\"description\"]\n    }",
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "product_serial",
+        "kind": 2,
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "peekOfCode": "def product_serial(product) -> dict:\n    return {\n        \"id\" : str(product[\"_id\"]),\n        \"name\": product[\"name\"],\n        \"price\": product[\"price\"],\n        \"quantity\": product[\"quantity\"],\n        \"description\": product[\"description\"]\n    }\ndef list_product(products) -> list:\n    return [product_serial(product) for product in products]",
+        "detail": "schema.schemas",
+        "documentation": {}
+    },
+    {
+        "label": "list_product",
+        "kind": 2,
+        "importPath": "schema.schemas",
+        "description": "schema.schemas",
+        "peekOfCode": "def list_product(products) -> list:\n    return [product_serial(product) for product in products]",
         "detail": "schema.schemas",
         "documentation": {}
     },
